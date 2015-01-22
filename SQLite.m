@@ -72,11 +72,11 @@
         }
         else
         {
-            NSLog(@"Query Select Error: %s", sqlite3_errmsg(database));
+            NSLog(@"Query Error: %s", sqlite3_errmsg(database));
         }
     }
     @catch (NSException *e) {
-        NSLog(@"%@", e);
+        NSLog(@"Query Error 2: %@", e);
     }
     @finally {
         sqlite3_close(database);
@@ -108,9 +108,6 @@
                         const char* name = sqlite3_column_name(compiledStatement, i);
                         NSString* columnName = [NSString stringWithUTF8String:name];
                         
-                        if([columnName isEqualToString:@"rDateCreation"])
-                            NSLog(@"test");
-                        
                         if (colType == SQLITE_TEXT){
                             NSString* s = [NSString stringWithCString:(char *)sqlite3_column_text(compiledStatement, i) encoding:NSUTF8StringEncoding];
                             if([s isEqualToString:@"(null)"])
@@ -140,7 +137,7 @@
     }
     
     @catch (NSException *e) {
-        NSLog(@"%@", e);
+        NSLog(@"Query Select Error 2: %@", e);
     }
     @finally {
         sqlite3_close(database);
@@ -162,11 +159,11 @@
         }
         else
         {
-            NSLog(@"Query Select Error: %s", sqlite3_errmsg(database));
+            NSLog(@"Query Insert Error: %s", sqlite3_errmsg(database));
         }
     }
     @catch (NSException *e) {
-        NSLog(@"%@", e);
+        NSLog(@"Query Insert Error 2: %@", e);
     }
     @finally {
         sqlite3_close(database);
@@ -196,7 +193,7 @@
             }
             else
             {
-                NSLog(@"Query Select Error: %s", sqlite3_errmsg(database));
+                NSLog(@"Query Count Error: %s", sqlite3_errmsg(database));
             }
             sqlite3_finalize(compiledStatement), compiledStatement = nil;
             
@@ -204,7 +201,7 @@
     }
     
     @catch (NSException *e) {
-        NSLog(@"%@", e);
+        NSLog(@"Query Count Error 2: %@", e);
     }
     @finally {
         sqlite3_close(database);
