@@ -13,14 +13,27 @@ NSString* queryGeoloc = @"create table if not exists  'Geoloc' ('ID' INTEGER NOT
 
 The query methods : 
 -(void)Query:(NSString*)query;
+
 Will only execute the query you send in parameter. Use it to CREATE, DELETE, UPDATE, for exemple
 
+
+
+
 -(NSArray*)QuerySelect:(NSString*)query;
+
 Will return an array of dictionnaries. The keys are the name of the fields declared in the SELECT clause.
 Integers/Float are NSNumbers because we can't store NSIntegers/Float in dictionnaries. 
 
+
+
+
 -(int)QueryInsert:(NSString*)query;
+
 Execute an insert query and returns the index of the new created record.
 
+
+
+
 -(NSInteger)QueryCount:(NSString*)query;
+
 Use it to do a SELECT COUNT query.
